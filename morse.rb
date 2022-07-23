@@ -18,4 +18,13 @@ def decode_char (string)
     # chars.each { |s| puts s }
 end
 
+def decode_char (string)
+  chars = string.split(' ')
+  @messages.each { |key, val|
+    chars.each {|s| if s == val
+      print key
+    end
+    }
+  }
+end
 
