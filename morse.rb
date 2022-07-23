@@ -1,30 +1,57 @@
-@messages = {
-  "A" => ".-",
-  "B" => "-...",
-  "C" => "-.-.",
-  "D" => "-..",
-  "E" => ".",
-  "F" => "..-.",
-  "G" => "--.",
+@morse_dict = {
+    "A" => ".-",
+    "B" => "-...",
+    "C" => "-.-.",
+    "D" => "-..",
+    "E" => ".",
+    "F" => "..-.",
+    "G" => "--.",
+    "H" => "....",
+    "I" => "..",
+    "J" => ".---",
+    "K" => "-.-",
+    "L" => ".-..",
+    "M" => "--",
+    "N" => "-.",
+    "O" => "---",
+    "P" => ".--.",
+    "Q" => "--.-",
+    "R" => ".-.",
+    "S" => "...",
+    "T" => "-",
+    "U" => "..-",
+    "V" => "...-",
+    "W" => ".--",
+    "X" => "-..-",
+    "Y" => "-.--",
+    "Z" => "--..",
 }
 
 # messages.each { |key, val| puts "#{key} is #{val}" }
-def decode_char (string)
-  @messages.each { |key, val|
-    if string == val
-      puts "#{string} is #{key}"
-      end
-    }
-    # chars.each { |s| puts s }
-end
-
-def decode_char (string)
-  chars = string.split(' ')
-  @messages.each { |key, val|
-    chars.each {|s| if s == val
-      print key
+def decode_char (char)
+  @morse_dict.each { |key, val|
+    if char == val
+       return key
     end
-    }
   }
 end
+# print decode_char(".")
 
+def decode_word (string)
+word = ''
+  string.split.each do |char|
+    word = word + decode_char(char)
+  end
+  return word
+end
+
+# print decode_word ".- -.. -.."
+
+def decode_message (string)
+ message = []
+ string.split("   ").each do |s| message.push(decode_word(s))
+end
+return message.join(' ')
+end
+
+puts decode_message("      .-   -... --- -..-   ..-. ..- .-.. .-..   --- ..-.   .-. ..- -... .. . ...")
